@@ -15,3 +15,4 @@ C:\Users\Juan Veliz\Documents\EngEnterprise\EsepWebhook\src\EsepWebhook\obj\Rele
 C:\Users\Juan Veliz\Documents\EngEnterprise\EsepWebhook\src\EsepWebhook\obj\Release\net6.0\linux-x64\EsepWebhook.pdb
 C:\Users\Juan Veliz\Documents\EngEnterprise\EsepWebhook\src\EsepWebhook\obj\Release\net6.0\linux-x64\EsepWebhook.genruntimeconfig.cache
 C:\Users\Juan Veliz\Documents\EngEnterprise\EsepWebhook\src\EsepWebhook\obj\Release\net6.0\linux-x64\ref\EsepWebhook.dll
+C:\Users\Juan Veliz\Documents\EngEnterprise\EsepWebhook\src\EsepWebhook\bin\Release\net6.0\linux-x64\Newtonsoft.Json.dll
