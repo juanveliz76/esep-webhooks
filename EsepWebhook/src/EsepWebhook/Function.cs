@@ -1,23 +1,31 @@
-using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace EsepWebhook
 {
     public class Function
     {
-        public string FunctionHandler(JObject input, ILambdaContext context)
+        public string FunctionHandler(object input, ILambdaContext context)
         {
             try
             {
-                var issueUrl = input["issue"]["html_url"].ToString();
-                string payload = $"{{'text':'Issue Created: {issueUrl}'}}";
+                // Log the raw JSON payload
+                context.Logger.LogLine($"Raw JSON Payload: {input}");
+
+                // Attempt to deserialize the input
+                dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
+
+                // Log the deserialized JSON object
+                context.Logger.LogLine($"Deserialized JSON: {json}");
+
+                // Extract information from the JSON and continue with your logic...
+                string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
 
                 var client = new HttpClient();
                 var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("SLACK_URL"))
@@ -32,9 +40,9 @@ namespace EsepWebhook
             }
             catch (Exception ex)
             {
-                // Log the exception for troubleshooting
-                context.Logger.LogLine($"Error processing GitHub payload: {ex.Message}");
-                throw; // Re-throw the exception to indicate failure
+                // Log any exceptions
+                context.Logger.LogLine($"Exception: {ex}");
+                throw; // Rethrow the exception to propagate it further
             }
         }
     }
