@@ -1,6 +1,6 @@
+using System.Text;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
-using System.Text;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -16,9 +16,9 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public string FunctionHandler(string input, ILambdaContext context)
+    public string FunctionHandler(object input, ILambdaContext context)
     {
-         dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
+        dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
         
         string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
         
