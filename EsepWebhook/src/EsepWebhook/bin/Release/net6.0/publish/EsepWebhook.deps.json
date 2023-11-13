@@ -10,7 +10,8 @@
       "EsepWebhook/1.0.0": {
         "dependencies": {
           "Amazon.Lambda.Core": "2.1.0",
-          "Amazon.Lambda.Serialization.SystemTextJson": "2.3.1"
+          "Amazon.Lambda.Serialization.SystemTextJson": "2.3.1",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "EsepWebhook.dll": {}
@@ -32,6 +33,14 @@
           "lib/net6.0/Amazon.Lambda.Serialization.SystemTextJson.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
           }
         }
       }
@@ -56,6 +65,13 @@
       "sha512": "sha512-7dGGgikMlEz72rGqeDwQEIxq+O8RDEdR4GH2S7hfZ8uzv5lyWVDuP2urV6MyD6APJ2WVHRwJlV74bB+XJncQpw==",
       "path": "amazon.lambda.serialization.systemtextjson/2.3.1",
       "hashPath": "amazon.lambda.serialization.systemtextjson.2.3.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     }
   }
 }
