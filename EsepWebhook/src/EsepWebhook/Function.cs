@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
@@ -11,13 +12,12 @@ namespace EsepWebhook
 {
     public class Function
     {
-        public string FunctionHandler(string input, ILambdaContext context)
+        public string FunctionHandler(JObject input, ILambdaContext context)
         {
             try
             {
-                dynamic json = JsonConvert.DeserializeObject<dynamic>(input);
-
-                string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
+                var issueUrl = input["issue"]["html_url"].ToString();
+                string payload = $"{{'text':'Issue Created: {issueUrl}'}}";
 
                 var client = new HttpClient();
                 var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("SLACK_URL"))
